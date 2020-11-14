@@ -24,8 +24,18 @@
         </select>
       </f7-list-item>
     </f7-list>
-      <f7-button type ="submit"> Add New Set </f7-button>
+    <f7-row>
+      <f7-col>
+        <f7-button class = "button button-fill button-round" href="/camera/"> Take a Picture </f7-button>
+      </f7-col>
+      <f7-col>
+        <input type="file" ref="file" @change="saveFile" style="display: none">
+        <f7-button class = "button button-fill button-round" @click="$refs.file.click()"> Upload a File </f7-button>
+      </f7-col>
+    </f7-row>
+      <f7-button class = "button button-fill button-round color-gray" type ="submit"> Add New Set </f7-button>
     </form>  
+    
 
     
     <!-- Tabbar for switching views-tabs -->
@@ -40,6 +50,7 @@
 import routes from '../js/routes.js';
 import firebase from 'firebase';
 import { db } from '../js/app'
+import { storage } from '../js/app'
 import 'firebase/auth';
 
 export default {
@@ -48,7 +59,8 @@ export default {
       return {
         email: firebase.auth().currentUser.email,
         flashSetName: '',
-        Subject: ''
+        Subject: '',
+        File: null
       };
     },
   methods: {
@@ -64,16 +76,31 @@ export default {
       selectMethod(payload){
         this.subject.name = payload.username;
       },
+      saveFile(event){
+      this.File = event.target.files[0];
+      },
       addFlashcardSet(flashSetName) {
         /*db.collection('usernames').add({ 
           username: tmpusername,
           email:this.email,  
           })*/
-          if(this.flashSetName=='' || this.Subject==''){
+          if((this.flashSetName=='' || this.Subject=='') || (this.$root.img == null && this.File == null)){
               this.$f7.dialog.alert('Please fill out all the information first.');
           } else{
-            var res = {"Set Name" : this.flashSetName, "Subject" : this.Subject, "Email": this.email}
+            if(this.File==null){
+              var m = Math.random();
+              var dest = 'images/picture-'+this.Subject+this.flashSetName+m.toString();
+              var upload = this.$root.img;
+            } else { 
+              var m = Math.random();
+              var dest = 'Files/file-'+this.Subject+this.flashSetName+m.toString();
+              var upload = this.File;
+            }
+            storage.ref().child(dest).put(upload).then(res => { console.log(res) })
+            
+            var res = {"Set Name" : this.flashSetName, "Subject" : this.Subject, "Email": this.email, "File ID":dest}
             console.log(res);
+            db.collection('Flashcards').add(res)
           }
       }
   }

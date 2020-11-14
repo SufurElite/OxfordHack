@@ -29,7 +29,6 @@ Framework7.use(Framework7Vue);
 Vue.use(Vuetify)
 Vue.use(firestorePlugin)
 
-
 const config = {
   apiKey: "",
   authDomain: "",
@@ -45,6 +44,7 @@ export default new Vuetify({
   theme: { dark: true },
 })
 export const firebaseApp = firebase.initializeApp(config);
+export const storage = firebase.storage();
 export const db = firebaseApp.firestore();
 // Init App
 new Vue({
@@ -54,6 +54,7 @@ new Vue({
     return {
       email: '',
       subject:'',
+      img: null
     }
   }, 
   // Register App Component
