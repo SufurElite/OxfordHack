@@ -10,6 +10,8 @@ import Framework7 from 'framework7/framework7-lite.esm.bundle.js';
 // Import Framework7-Vue Plugin
 import Framework7Vue from 'framework7-vue/framework7-vue.esm.bundle.js';
 
+import Vuetify from 'vuetify/lib'
+
 // Import Framework7 Styles
 import 'framework7/css/framework7.bundle.css';
 
@@ -24,7 +26,9 @@ import App from '../components/app.vue';
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
 
+Vue.use(Vuetify)
 Vue.use(firestorePlugin)
+
 
 const config = {
   apiKey: "",
@@ -37,6 +41,9 @@ const config = {
   measurementId: ""
 };
 
+export default new Vuetify({
+  theme: { dark: true },
+})
 export const firebaseApp = firebase.initializeApp(config);
 export const db = firebaseApp.firestore();
 // Init App
@@ -45,7 +52,8 @@ new Vue({
   render: (h) => h(App),
   data(){
     return {
-      email: ''
+      email: '',
+      subject:'',
     }
   }, 
   // Register App Component

@@ -1,8 +1,8 @@
 <template>
-  <f7-page name="about">
+  <f7-page name="cards" theme-dark>
     <f7-navbar :sliding="false" large>
       <div>
-        <f7-button v-on:click="onLogoutClicked" style="text-align:left; width:100%"> Logout </f7-button>
+        <f7-button class = "button-fill button-round" v-on:click="onLogoutClicked" style="text-align:left; width:100%"> Logout </f7-button>
         <f7-button v-on:click="onLogoutClicked" style="text-align:left; width:100%"> About </f7-button>
       </div>
       <h4 style="text-align:right; width: 100%;">{{this.email}}</h4>

@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="home">
+  <f7-page name="home" theme-dark>
   <!-- Top Navbar -->
     <f7-navbar :sliding="false" large>
       <f7-nav-title-large sliding style="text-align:center; width: 100%;">RevAIse</f7-nav-title-large>

@@ -3,7 +3,5 @@
   --f7-theme-color: #800000;
   --f7-theme-color-rgb: 148, 244, 255;
   --f7-theme-color-shade: #FFFFFF;
-  --f7-theme-color-tint: #FFFFFF;
+  --f7-theme-color-tint: hsl(0, 0%, 100%);
 }
-
-/* Your app custom styles here */
