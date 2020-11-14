@@ -8,9 +8,13 @@
       <h4 style="text-align:right; width: 100%;">{{this.email}}</h4>
       <f7-nav-title-large sliding style="text-align:center; width: 100%;">RevAIse</f7-nav-title-large>
     </f7-navbar>
-    
-    <div>
-    </div>
+    <f7-list class = "smart-select">
+      <f7-list-item title="Study Set"> 
+        <select v-model="Flashset">
+          <option v-for="set in FlashSets" :key="set.fileID"> <p class = "text-align-center" style="font-size:large"> {{ set.setname }} </p> </option>
+        </select>
+      </f7-list-item>
+    </f7-list>
     <!-- Tabbar for switching views-tabs -->
     <f7-toolbar tabbar labels bottom>
       <f7-link link="#" tab-link-active icon-md="material:note" text="Cards"></f7-link>
@@ -29,16 +33,23 @@ import dropdown from 'vue-dropdowns'
 import 'firebase/auth';
 
 export default {
-  firestore() {
-    return{
-    usernames: db.collection("usernames").where("email", "==", this.email)
-    }
-  },
   data() {
       return {
         email: firebase.auth().currentUser.email,  
+        FlashSets: [],
+        Flashset: '',
+        object: {
+          name: 'Flashcard Sets',
+        },
       };
     },
+    mounted() {
+    db.collection('flashcards').where('email','==',this.email).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.FlashSets.push(doc.data());
+      });
+    });
+  },
   components: {
             'dropdown': dropdown,
   },
@@ -51,6 +62,9 @@ export default {
       },
       toScan(){
         this.$f7.views.main.router.navigate('/home/');
+      },
+      selectMethod(payload){
+        this.object.name = payload.setname;
       },
   }
 

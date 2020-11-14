@@ -98,9 +98,9 @@ export default {
             }
             storage.ref().child(dest).put(upload).then(res => { console.log(res) })
             
-            var res = {"Set Name" : this.flashSetName, "Subject" : this.Subject, "Email": this.email, "File ID":dest}
+            var res = {"setname" : this.flashSetName, "subject" : this.Subject, "email": this.email, "fileID":dest}
             console.log(res);
-            db.collection('Flashcards').add(res)
+            db.collection('flashcards').add(res)
           }
       }
   }

@@ -29,23 +29,14 @@ Framework7.use(Framework7Vue);
 Vue.use(Vuetify)
 Vue.use(firestorePlugin)
 
-const config = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
-};
+
 
 export default new Vuetify({
   theme: { dark: true },
 })
 export const firebaseApp = firebase.initializeApp(config);
-export const storage = firebase.storage();
 export const db = firebaseApp.firestore();
+export const storage = firebase.storage();
 // Init App
 new Vue({
   el: '#app',

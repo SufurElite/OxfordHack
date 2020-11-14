@@ -4,9 +4,9 @@
     
     <div>
         <div>
-            <f7-block-title>Take a pic</f7-block-title>
+            <f7-block-title>Take a Picture of Your Notes</f7-block-title>
             <f7-block strong>
-                <p>Lorem Ipsum</p>
+                <p>Ideally, take the picture with your phone alligned with the notes and with a good light source present.</p>
             </f7-block>
         </div>
         <div class = "camera-modal">
