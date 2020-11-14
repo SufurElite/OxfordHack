@@ -23,25 +23,8 @@
   </f7-panel>
 
 
-  <!-- Views/Tabs container -->
-  <f7-views tabs class="safe-areas">
-    <!-- Tabbar for switching views-tabs -->
-    <f7-toolbar tabbar labels bottom>
-      <f7-link tab-link="#view-home" tab-link-active icon-ios="f7:house_fill" icon-aurora="f7:house_fill" icon-md="material:home" text="Home"></f7-link>
-      <f7-link tab-link="#view-catalog" icon-ios="f7:square_list_fill" icon-aurora="f7:square_list_fill" icon-md="material:view_list" text="Catalog"></f7-link>
-      <f7-link tab-link="#view-settings" icon-ios="f7:gear" icon-aurora="f7:gear" icon-md="material:settings" text="Settings"></f7-link>
-    </f7-toolbar>
-
-    <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-    <f7-view id="view-home" main tab tab-active url="/"></f7-view>
-
-    <!-- Catalog View -->
-    <f7-view id="view-catalog" name="catalog" tab url="/catalog/"></f7-view>
-
-    <!-- Settings View -->
-    <f7-view id="view-settings" name="settings" tab url="/settings/"></f7-view>
-
-  </f7-views>
+  <!-- Your main view, should have "view-main" class -->
+  <f7-view main class="safe-areas" url="/"></f7-view>
 
 
     <!-- Popup -->
@@ -103,30 +86,7 @@
           name: 'RevAIse', // App name
           theme: 'auto', // Automatic theme detection
 
-          // App root data
-          data: function () {
-            return {
 
-              // Demo products for Catalog section
-              products: [
-                {
-                  id: '1',
-                  title: 'Apple iPhone 8',
-                  description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-                },
-                {
-                  id: '2',
-                  title: 'Apple iPhone 8 Plus',
-                  description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
-                },
-                {
-                  id: '3',
-                  title: 'Apple iPhone X',
-                  description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
-                },
-              ]
-            };
-          },
 
           // App routes
           routes: routes,
