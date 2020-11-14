@@ -1,0 +1,26 @@
+{
+  "cwd": "/mnt/c/Users/Rufus Behr/Desktop/OxfordHack/FrontEnd",
+  "type": [
+    "web"
+  ],
+  "name": "RevAIse",
+  "framework": "vue",
+  "template": "tabs",
+  "cssPreProcessor": false,
+  "bundler": "webpack",
+  "webpack": {
+    "developmentSourceMap": true,
+    "productionSourceMap": true,
+    "hashAssets": false,
+    "preserveAssetsPaths": false,
+    "inlineAssets": true
+  },
+  "theming": {
+    "customColor": true,
+    "color": "#94f4ff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}
