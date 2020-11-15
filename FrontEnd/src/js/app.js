@@ -33,6 +33,9 @@ Vue.use(firestorePlugin)
 export default new Vuetify({
   theme: { dark: true },
 })
+
+
+
 export const firebaseApp = firebase.initializeApp(config);
 export const db = firebaseApp.firestore();
 export const storage = firebase.storage();

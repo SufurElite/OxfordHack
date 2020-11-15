@@ -12,6 +12,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
 import numpy as np
 from appGen import QuestionGenerator
+from connect_database import uploadQAs
 import pprint
 import random 
 
@@ -41,19 +42,28 @@ class parseText(Resource):
     data = [s.strip() for s in text.splitlines()]
     print(len(data))
     pp = pprint.PrettyPrinter(indent=4)
+    QAs = []
     for i in data:
-      try:
-        qg = QuestionGenerator(i)
-        questions = qg.process(top_sentences=2)
-        print(i)
-        for q in questions:
-          pp.pprint(q)
-        input()
-      except Exception as e:
-        print("Error encountered, but let's keep trying" + str(e))
+      if len(i)>50:
+        try:
+          qg = QuestionGenerator(i)
+          questions = qg.process(top_sentences=2)
+          #print(i)
+          for q in questions:
+            #pp.pprint(q)
+            qa = (q['question_gap'],q['answer'])
+            QAs.append(qa)
+            #input(qa)
+          #input()
+        except Exception as e:
+          #print("Error encountered, but let's keep trying" + str(e))
+          print()
     res = {
-      "success": True
+      "success": True,
+      "QAs": QAs
     }
+    #input(QAs)
+    uploadQAs(args["email"],args["setname"],QAs)
     return res
 
 
