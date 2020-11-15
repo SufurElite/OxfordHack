@@ -1,0 +1,29 @@
+for Text-based Games using
+Deep Renforcement Learning
+(cs. Princeton.edu/am Karthikal assets/pdf/
+mud-play 15.pdf)
+Abstract
+In this paper, they consider the task of leaning control polices
+for text-based games. In these games sall in teractions in the virtual
+world and are through test and the unitelying Statey not observed. The resulting
+language barrier makes such environment challengang for auto motle game playos.
+We omploys a deep run for comest Learning frome work to jokatly leain state
+representations and acbas polices using game rewards as feedback. This framework
+enables us to mop leat descriptions intovector represents troge that capture the
+Sexanbics often the game stoles. We evaluate as approach on two game
+woulds, comparing against baseliner uang bay-of Mady and bay of bigrams for state
+representation. This algo them atyre forms the beyelines on both walls demantreking
+the importance of learning expressive representations. I both authors contributed
+equally to the work and the code is available at http:// people.Gail.mit.edul Karth
+ikn/mud-play.
+1. Introduction
+we address the task of learning control polices for text-base
+strategy games. These games predecessors to modern graphical ones, still enjoy
+a large following worldwide & http://mudstots.com. They often involve complex
+worlds with rich interactions and elabuute textual descriptions of the undelyn
+states (see figure 1). Players read description of the custent world state and respon
+with natural language commands to take actions since the underlying state is
+not directly observable, the player has to understand the text in order to act,
+making it Challenging for existing Alpugion to play these games
+.
+In this paper,

@@ -30,7 +30,6 @@ Vue.use(Vuetify)
 Vue.use(firestorePlugin)
 
 
-
 export default new Vuetify({
   theme: { dark: true },
 })

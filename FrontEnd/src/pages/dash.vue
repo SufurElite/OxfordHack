@@ -52,6 +52,7 @@ import firebase from 'firebase';
 import { db } from '../js/app'
 import { storage } from '../js/app'
 import 'firebase/auth';
+import axios from 'axios'
 
 export default {
   
@@ -60,6 +61,7 @@ export default {
         email: firebase.auth().currentUser.email,
         flashSetName: '',
         Subject: '',
+        isImage: null,
         File: null
       };
     },
@@ -78,19 +80,27 @@ export default {
       },
       saveFile(event){
       this.File = event.target.files[0];
+      console.log(this.File)
+      var type = event.target.files[0]['type'];
+      console.log(type);
+      if(type=="image/jpeg" || type=="image/png" || type == "image/gif"){
+        this.isImage = true;
+      } else { 
+        this.isImage = false;
+      }
       },
       addFlashcardSet(flashSetName) {
-        /*db.collection('usernames').add({ 
-          username: tmpusername,
-          email:this.email,  
-          })*/
           if((this.flashSetName=='' || this.Subject=='') || (this.$root.img == null && this.File == null)){
               this.$f7.dialog.alert('Please fill out all the information first.');
           } else{
-            if(this.File==null){
+            if(this.isImage || this.File == null){
               var m = Math.random();
               var dest = 'images/picture-'+this.Subject+this.flashSetName+m.toString();
-              var upload = this.$root.img;
+              if (this.File == null){
+                var upload = this.$root.img;
+              } else{
+                var upload = this.File;
+              }
             } else { 
               var m = Math.random();
               var dest = 'Files/file-'+this.Subject+this.flashSetName+m.toString();
@@ -101,8 +111,20 @@ export default {
             var res = {"setname" : this.flashSetName, "subject" : this.Subject, "email": this.email, "fileID":dest}
             console.log(res);
             db.collection('flashcards').add(res)
+            //https://cors-anywhere.herokuapp.com/https://revaise.ew.r.appspot.com
+            axios.post('http://127.0.0.1:5000/parse/', {
+              setname: this.flashSetName,
+              subject: this.Subject,
+              email: this.email, 
+              fileID: dest
+            }).then((response)=>{
+              console.log(response.data);  
+              this.$root.img = null;
+              this.File = null;
+              this.isImage = null;
+            })
           }
-      }
+      },
   }
 }
 </script>

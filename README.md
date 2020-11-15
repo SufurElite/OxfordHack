@@ -7,7 +7,7 @@ Boiler-Plate Sections below:
 
 
 ## How it was built
-
+The model was effectively an api call to this github repo: https://github.com/holylovenia/question-answer-generation. When reading their paper, their goals and mine were directly aligned, so, while I couldn't reimplement this model the way they masterfully have here, I was able to get the implementation working and am using it as an api call for my program. This field of work really interests me (having read a bit now on QA and QG), so I've forked their repo and plan to expand upon it. 
 ## Challenges I ran into
 
 
