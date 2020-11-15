@@ -11,6 +11,9 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
 import numpy as np
+from appGen import QuestionGenerator
+import pprint
+import random 
 
 # initialise flask app
 app = Flask(__name__)
@@ -25,7 +28,6 @@ parser.add_argument("subject")
 parser.add_argument("email")
 parser.add_argument("fileID")
 
-
 class parseText(Resource):
   def post(self):
     args = parser.parse_args()
@@ -34,8 +36,23 @@ class parseText(Resource):
       text = loadImageText(args["fileID"])
     elif args["fileID"][0]=="F":
       text = loadPdfText(args["fileID"])
+    pp = pprint.PrettyPrinter(indent=4)
+    random.seed(42)
+    data = [s.strip() for s in text.splitlines()]
+    print(len(data))
+    pp = pprint.PrettyPrinter(indent=4)
+    for i in data:
+      try:
+        qg = QuestionGenerator(i)
+        questions = qg.process(top_sentences=2)
+        print(i)
+        for q in questions:
+          pp.pprint(q)
+        input()
+      except Exception as e:
+        print("Error encountered, but let's keep trying" + str(e))
     res = {
-      "txt": text
+      "success": True
     }
     return res
 
