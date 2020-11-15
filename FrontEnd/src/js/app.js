@@ -22,7 +22,6 @@ import '../css/app.css';
 // Import App Component
 import App from '../components/app.vue';
 
-
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
 
@@ -33,7 +32,6 @@ Vue.use(firestorePlugin)
 export default new Vuetify({
   theme: { dark: true },
 })
-
 
 
 export const firebaseApp = firebase.initializeApp(config);

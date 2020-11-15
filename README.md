@@ -1,17 +1,24 @@
-# OxfordHack
-Project Repo for the Oxford Hacks 2020 running Nov 14 - Nov 15
-Current project name, subject to change: RevAIse
-Boiler-Plate Sections below: 
+# Oxford Hack : Flashy Cards
+
+# Video Demonstration 
+Check out the video demo here.
 
 ## Inspiration
+As a former quite diligent student in high school, I would create flashcards for almost every subject. Obviously, the successfulness of repetition to remember information is no secret, but, upon entering University, I had an increased workload, a job, friends/social obligations, and less time to dedicate to creating flashcards. Ultimately, as I transitioned from high school to University, I realised that the time spent creating flashcards could be better spent revising, and so I ceased making them altogether. 
 
+But what if I could just scan my notes from class and the flashcards would generate automatically? This was the inspiration for Flashy Cards, a mobile application (currently web but designed to be used by a webwrapper), that allows you to benefit from the unreasonable effectiveness of flashcards without having to laboriously and repetitively transcribe your notes. Currently, only supporting subjects that require reading comprehension (history, english, etc), but soon to be inclusive of other subjects.
 
 ## How it was built
-The model was effectively an api call to this github repo: https://github.com/holylovenia/question-answer-generation. When reading their paper, their goals and mine were directly aligned, so, while I couldn't reimplement this model the way they masterfully have here, I was able to get the implementation working and am using it as an api call for my program. This field of work really interests me (having read a bit now on QA and QG), so I've forked their repo and plan to expand upon it. 
+I developed the frontend of this application using Vue.JS and Framework 7.
+I communicated with the backend in Python using Flask. I utilised Google's Firebase for authentication for the application - allowing email and google sign-ins. I then used Firestore as a preliminary database to save prospective flashcard set information - namely, the name of the set, the subject, the user that created it, and the file location of the data the user wants to turn into a flashcard set. These files to be converted to sets were located on Google's Storage. After which, they're able to be accessed by Google Cloud Vision API, which I used to retrieve text from image and pdf files. Once the text was retrieved, it was a matter of using it in conjunction with a Question Generator (QG) and Question Answering (QA) model. I opted to use an implementation of the paper Automatic Question-Answer Pairs Generation from Text Holy Lovenia et al. And then once the QG and QA pairs are created, they're automatically sent to a database on DataStax Astra to be retrieved at any point by the user to study from. 
 ## Challenges I ran into
-
+I work as a Data Scientist for an Insurance Tools Company, and so my work typically is just on the back-end. As a result I'm much more comfortable doing back-end work than I am front-end (normally something I'll convince my friends to do when at a hackathon or more generally working on a project together). One such front-end err that was the bane of my existence from around midnight to early in the morning was a CORS error that was caused on account of an extension I was using to emulate the mobile view. But more generally, I also had front-end design qualms - as my primarily back-end experience doesn't require any particular form of a UI, designing a UI certainly doesn't come naturally to me.
 
 ## What I learned
+I got to have more experience with Vue.JS in combination with Firebase and other Google services. But in addition, I was able to briefly read through (or skim in many instances) papers on Question Generatoin and Question Answering - I look forward to reading them more fully after the hackathon (especially with regards to furthering this project). I also learned about CQL and Cassandra, neither of which I had used or was really at all familiar with beforehand, and how to integrate them with my project. In particular, I learned about DataStax (specifically DataStax Astra) and some of its functionality.
 
-## What's next for RevAIse?
-* 
+## What's next for Flashy Cards?
+* Currently, Flashy Cards is best suited for a limited range of subjects/is primarily focused on Reading Comprehension. I'd like to create different models or rework the current model architecture for additional subjects - e.g. Language vocabulary would be a very straightforward application of key term matching and when I scanned the vocabulary from a picture of a textbook it almost came out precisely in order. So I believe Language is the next most logical subject to broaden Flashy Cards to.
+* I plan on enabling the users to modify their sets. Sometimes the flashcards come out odd, slightly misphrased, with spelling mistakes, etc, so I think it would make sense for the end user to be able to modify the flashcards as they see fit (deleting any non-pertinent ones for instance).
+* Partially as a result of this competition, I'm interested in Question Answering and Question Generation as a field of literature/research, so I plan on reworking the existing implementation - namely, as listed in the paper, trying to develop a more robust implementing an already established rule-based question generation system and implementing a deep neural network for question generation itself - e.g. a Seq 2 Seq network
+* It may also be worthwhile trying to come up with heuristics to achieve the structure (if there is a clear underlying one) of popular flashcard sets (on Quizlet), which may be worked more into the rule-based question generation system to come up with

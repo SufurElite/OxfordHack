@@ -3,7 +3,7 @@
     <f7-navbar :sliding="false" large>
       <div>
         <f7-button class = "button-fill button-round" v-on:click="onLogoutClicked" style="text-align:left; width:100%"> Logout </f7-button>
-        <f7-button v-on:click="onLogoutClicked" style="text-align:left; width:100%"> About </f7-button>
+        <f7-button v-on:click="toAbout" style="text-align:left; width:100%"> About </f7-button>
       </div>
       <h4 style="text-align:right; width: 100%;"> {{this.email}}</h4>
       <f7-nav-title-large sliding style="text-align:center; width: 100%;">Create a Study Set</f7-nav-title-large>
@@ -74,6 +74,9 @@ export default {
       },
       toCards(){
         this.$f7.views.main.router.navigate('/cards/');
+      },
+      toAbout(){
+        this.$f7.views.main.router.navigate('/about/');
       },
       selectMethod(payload){
         this.subject.name = payload.username;

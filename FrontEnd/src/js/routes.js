@@ -3,6 +3,7 @@ import HomePage from '../pages/dash.vue';
 import CardPage from '../pages/cards.vue';
 import CameraView from '../pages/CameraView.vue'
 import NotFoundPage from '../pages/404.vue';
+import AboutPage from '../pages/about.vue'
 
 var routes = [
   {
@@ -19,6 +20,13 @@ var routes = [
   {
     path: '/camera/',
     component: CameraView,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/about/',
+    component: AboutPage,
     meta: {
       requireAuth: true
     }

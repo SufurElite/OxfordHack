@@ -1,6 +1,6 @@
 <template>
 <f7-page name="users">
-    <f7-navbar back-link="Back">RevAIse</f7-navbar>
+    <f7-navbar back-link="Back">Flashy Cards</f7-navbar>
     
     <div>
         <div>

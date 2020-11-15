@@ -12,7 +12,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
 import numpy as np
 from appGen import QuestionGenerator
-from connect_database import uploadQAs
+from connect_database import uploadQAs, downloadQAs, getStudySets
 import pprint
 import random 
 
@@ -67,6 +67,30 @@ class parseText(Resource):
     return res
 
 
+class getCards(Resource):
+  def post(self):
+    args = parser.parse_args()
+    print(args)
+    cards = downloadQAs(args["email"], args["setname"])
+    res = {
+      "success": True,
+      "cards": cards
+    }
+    return res
+
+class getSets(Resource):
+  def post(self):
+    args = parser.parse_args()
+    print(args)
+    studysets = getStudySets(args["email"])
+    res = {
+      "success": True,
+      "sets": studysets
+    }
+    return res
+
 api.add_resource(parseText, "/parse/")
+api.add_resource(getCards, "/getCards/")
+api.add_resource(getSets, "/getSets/")
 if __name__ == "__main__":
   app.run(debug=False, threaded=False)
